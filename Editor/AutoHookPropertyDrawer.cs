@@ -34,10 +34,14 @@ namespace TNRD.Autohook
             {
                 return;
             }
-
-            EditorGUI.BeginDisabledGroup(autoHookAttribute.ReadOnlyWhenFound() && property.objectReferenceValue != null);
+            
+            var readOnly = autoHookAttribute.ReadOnlyWhenFound() && property.objectReferenceValue != null;
+            EditorGUI.BeginDisabledGroup(readOnly);
             EditorGUI.PropertyField(position, property, label);
             EditorGUI.EndDisabledGroup();
+            
+            var iconRect = new Rect(position.x + EditorGUIUtility.labelWidth - EditorGUIUtility.singleLineHeight, position.y, EditorGUIUtility.singleLineHeight, EditorGUIUtility.singleLineHeight);
+            GUI.DrawTexture(iconRect, AutoHookUtils.GetIcon(readOnly));
         }
 
         private Component FindComponent(SerializedProperty property)
