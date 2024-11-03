@@ -17,5 +17,7 @@
     "name": "TNRD",
     "url": "https://www.tnrd.net"
   },
-  "dependencies": { }
+  "dependencies": {
+    "com.unity.settings-manager": "1.0.1"
+  }
 }

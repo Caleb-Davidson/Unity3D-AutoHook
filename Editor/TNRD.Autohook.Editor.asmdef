@@ -1,7 +1,9 @@
 {
     "name": "TNRD.Autohook.Editor",
+    "rootNamespace": "",
     "references": [
-        "TNRD.Autohook"
+        "TNRD.Autohook",
+        "Unity.Settings.Editor"
     ],
     "includePlatforms": [
         "Editor"

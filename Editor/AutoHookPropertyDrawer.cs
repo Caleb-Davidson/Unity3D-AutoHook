@@ -10,8 +10,8 @@ namespace TNRD.Autohook
         public override float GetPropertyHeight(SerializedProperty property, GUIContent label)
         {
             AutoHookAttribute autoHookAttribute = (AutoHookAttribute) attribute;
-
-            if (autoHookAttribute.HideWhenFound && property.objectReferenceValue != null)
+            
+            if (autoHookAttribute.HideWhenFound() && property.objectReferenceValue != null)
             {
                 return 0;
             }
@@ -23,25 +23,18 @@ namespace TNRD.Autohook
         {
             AutoHookAttribute autoHookAttribute = (AutoHookAttribute) attribute;
 
-            if (autoHookAttribute.StopSearchWhenFound)
-            {
-                if (property.objectReferenceValue == null)
-                {
-                    Component component = FindComponent(property);
-                    property.objectReferenceValue = component;
-                }
-            }
-            else
+            if (property.objectReferenceValue == null)
             {
                 Component component = FindComponent(property);
-
-                if (property.objectReferenceValue == null && component != null)
-                {
-                    property.objectReferenceValue = component;
-                }
+                property.objectReferenceValue = component;
+            }
+            
+            if (property.objectReferenceValue != null && autoHookAttribute.HideWhenFound())
+            {
+                return;
             }
 
-            EditorGUI.BeginDisabledGroup(autoHookAttribute.ReadOnlyWhenFound && property.objectReferenceValue != null);
+            EditorGUI.BeginDisabledGroup(autoHookAttribute.ReadOnlyWhenFound() && property.objectReferenceValue != null);
             EditorGUI.PropertyField(position, property, label);
             EditorGUI.EndDisabledGroup();
         }
@@ -107,4 +100,18 @@ namespace TNRD.Autohook
             return null;
         }
     }
+
+    public static class AutoHookAttributeExtension {
+        public static bool HideWhenFound(this AutoHookAttribute attribute) {
+            return attribute.HideWhenFound == AutoHookAttribute.Trinary.Null 
+                ? AutoHookSettings.HideWhenFound == AutoHookAttribute.Trinary.True 
+                : attribute.HideWhenFound == AutoHookAttribute.Trinary.True;
+        }
+        
+        public static bool ReadOnlyWhenFound(this AutoHookAttribute attribute) {
+            return attribute.ReadOnlyWhenFound == AutoHookAttribute.Trinary.Null 
+                ? AutoHookSettings.ReadOnlyWhenFound == AutoHookAttribute.Trinary.True 
+                : attribute.ReadOnlyWhenFound == AutoHookAttribute.Trinary.True;
+        }
+    } 
 }

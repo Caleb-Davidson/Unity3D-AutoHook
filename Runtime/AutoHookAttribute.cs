@@ -6,28 +6,35 @@ namespace TNRD.Autohook
     [AttributeUsage(AttributeTargets.Field)]
     public class AutoHookAttribute : PropertyAttribute
     {
+        public enum Trinary 
+        {
+            Null,
+            True,
+            False
+        }
+        
         public AutoHookSearchArea SearchArea;
         /// <summary>
         /// Reduces the size of the property to 0 when a matching component has been found
         /// </summary>
-        public bool HideWhenFound;
+        public Trinary HideWhenFound;
         /// <summary>
         /// Marks the property as read-only when a matching component has been found
         /// </summary>
-        public bool ReadOnlyWhenFound;
-        /// <summary>
-        /// Stops calling GetComponent when a matching component has been found. This is useful if you have many [AutoHook] usages in your file
-        /// </summary>
-        public bool StopSearchWhenFound;
+        public Trinary ReadOnlyWhenFound;
 
-        public AutoHookAttribute()
+        public AutoHookAttribute(Trinary hideWhenFound = Trinary.Null, Trinary readOnlyWhenFound = Trinary.Null)
         {
+            HideWhenFound = hideWhenFound;
+            ReadOnlyWhenFound = readOnlyWhenFound;
             SearchArea = AutoHookSearchArea.Default;
         }
 
-        public AutoHookAttribute(AutoHookSearchArea searchArea)
+        public AutoHookAttribute(AutoHookSearchArea searchArea, Trinary hideWhenFound = Trinary.Null, Trinary readOnlyWhenFound = Trinary.Null)
         {
             SearchArea = searchArea;
+            HideWhenFound = hideWhenFound;
+            ReadOnlyWhenFound = readOnlyWhenFound;
         }
     }
 }
