@@ -2,10 +2,11 @@ namespace TNRD.Autohook
 {
     public enum AutoHookSearchArea
     {
-        Default,
+        Self,
         Parent,
         Children,
         DirectChildrenOnly,
         AllChildrenOnly,
+        WholeScene,
     }
 }

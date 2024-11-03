@@ -1,6 +1,7 @@
 using System;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 namespace TNRD.Autohook
 {
@@ -61,6 +62,8 @@ namespace TNRD.Autohook
                     return FindComponentInDirectChildren(parent.transform, type);
                 case AutoHookSearchArea.AllChildrenOnly:
                     return FindComponentInChildrenRecursive(parent.transform, type);
+                case AutoHookSearchArea.WholeScene:
+                    return FindComponentInScene(parent.gameObject.scene, type);
                 default:
                     return parent.GetComponent(type);
             }
@@ -97,6 +100,18 @@ namespace TNRD.Autohook
                 }
             }
 
+            return null;
+        }
+        
+        private Component FindComponentInScene(Scene scene, Type type)
+        {
+            foreach (var gameObject in scene.GetRootGameObjects()) {
+                var component = gameObject.GetComponent(type);
+                if (component != null) {
+                    return component;
+                }
+            }
+            
             return null;
         }
     }

@@ -27,7 +27,7 @@ namespace TNRD.Autohook
         {
             HideWhenFound = hideWhenFound;
             ReadOnlyWhenFound = readOnlyWhenFound;
-            SearchArea = AutoHookSearchArea.Default;
+            SearchArea = AutoHookSearchArea.Self;
         }
 
         public AutoHookAttribute(AutoHookSearchArea searchArea, Trinary hideWhenFound = Trinary.Null, Trinary readOnlyWhenFound = Trinary.Null)
