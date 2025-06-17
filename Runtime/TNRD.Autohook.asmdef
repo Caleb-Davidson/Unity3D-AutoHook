@@ -1,5 +1,6 @@
 {
     "name": "TNRD.Autohook",
+    "rootNamespace": "TNRD.Autohook",
     "references": [],
     "includePlatforms": [],
     "excludePlatforms": [],

@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace TNRD.Autohook
+namespace TNRD.Autohook.Editor
 {
     [CustomPropertyDrawer(typeof(AutoHookAttribute))]
     public class AutoHookPropertyDrawer : PropertyDrawer

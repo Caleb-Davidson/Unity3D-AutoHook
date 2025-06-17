@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEditor;
 using UnityEngine;
 
-namespace TNRD.Autohook {
+namespace TNRD.Autohook.Editor {
 internal static class AutoHookSettingsDrawer {
     private static readonly Dictionary<string, string> fieldNames = new() {
         { nameof(AutoHookSettings.HideWhenFound), "Hide When Found" },
@@ -13,7 +13,7 @@ internal static class AutoHookSettingsDrawer {
     
     [SettingsProvider]
     public static SettingsProvider CreateSettingsProvider() {
-        return new SettingsProvider("Preferences/AutoHook", SettingsScope.User) {
+        return new SettingsProvider("Project/AutoHook", SettingsScope.Project) {
             label = "AutoHook",
             keywords = GetKeywords(),
             guiHandler = searchContext => {

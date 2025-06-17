@@ -1,6 +1,6 @@
 {
     "name": "TNRD.Autohook.Editor",
-    "rootNamespace": "",
+    "rootNamespace": "TNRD.Autohook.Editor",
     "references": [
         "TNRD.Autohook",
         "Unity.Settings.Editor"

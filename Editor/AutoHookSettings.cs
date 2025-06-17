@@ -1,6 +1,6 @@
 ﻿using UnityEditor.SettingsManagement;
 
-namespace TNRD.Autohook {
+namespace TNRD.Autohook.Editor {
 internal static class AutoHookSettings {
     private const string PACKAGE_NAME = "net.tnrd.autohook";
     

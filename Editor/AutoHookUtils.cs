@@ -1,7 +1,7 @@
 ﻿using UnityEditor;
 using UnityEngine;
 
-namespace TNRD.Autohook {
+namespace TNRD.Autohook.Editor {
 public static class AutoHookUtils {
     private const string IconName = "net.tnrd.autohook.icon";
     
