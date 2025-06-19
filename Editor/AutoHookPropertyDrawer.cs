@@ -107,8 +107,8 @@ namespace TNRD.Autohook.Editor
             return null;
         }
         
-        private Component FindComponentInScene(Scene scene, Type type)
-        {
+        private Component FindComponentInScene(Scene scene, Type type) {
+            if (scene.isLoaded == false) return null;
             foreach (var gameObject in scene.GetRootGameObjects()) {
                 var component = gameObject.GetComponent(type);
                 if (component != null) {
